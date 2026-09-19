@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#12161c">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAADAklEQVR4nO3dIW4UURzA4S3hBBVVBFsDEgQWhSDcgRPguA2GE5CGoGoxWAyWE3AERBNogN+mIZk3b2a/T7Zi3mx+/c/s7Ev37PziwQH+5d7aC2Be4iCJgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI90ce7Prq3cjDLef5y9drL2GEszH/9mk3Wdy2+0RGXFZ2WcZhv+f1y+Jx7PsV3PfZLRvHvl+7Gzs+R+9WSAvGseM/qT/s9UxNDpI4SOIgiYMkDpI4SOIgiYMkDtLQ/Rw7dvwh6UY/3Dc5Rri+erfFR+ziGGdzfYhjqG31IY7RNtSHOEjiWMFWhoc4SOIgiYMkDpI4SOIgiYMkDpI4SBvez/Hmx4e/f/jx6dvxK/kP3799PvLbh5fPhq3kCJNjRt+/fT5ezxjimNfqfYhjauv2IY7ZrdiHOEji2IC1hoc4SOIgiYMkDpI4SOIgiYMkDpI4SBvez/F/Hj15sfYSfvv65dPaSzjG5CCJgyQOkjhIJ3dDOvk94FRMDpI4SOIgiYMkDpI4SOIgiYMkDpI4SCf3+Nx+jrszOUjiIImDJA7Syd2QTn4POBWTgyQOkjhI4iCJg7RgHBv9jm5+MTlIy8ZheGza4pNDH9s14rKij40a9Pj8po8ZvonZfo67G/rZyvERMkM63ObdCkkcJHGQ7OcgmRwkcZDEQRIHSRykieLwEcxsJoqD2cwVh+ExlbniOOhjJtPFcdDHNCZ9fL7c/g/7Oe5u0jhuHB8hj9+/GraS0zTjZYVJiIMkDtLU9xxLmPwecComB0kcJHGQxEESB0kcG/Dw8tkqxxUHSRyzW2tsHMQxuRXLOIhjZuuWcTjBx+ebsHoWN87OLx6svQYm5bJCEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkH4CJqNn/5WcYywAAAAASUVORK5CYII=">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAADAklEQVR4nO3dIW4UURzA4S3hBBVVBFsDEgQWhSDcgRPguA2GE5CGoGoxWAyWE3AERBNogN+mIZk3b2a/T7Zi3mx+/c/s7Ev37PziwQH+5d7aC2Be4iCJgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI90ce7Prq3cjDLef5y9drL2GEszH/9mk3Wdy2+0RGXFZ2WcZhv+f1y+Jx7PsV3PfZLRvHvl+7Gzs+R+9WSAvGseM/qT/s9UxNDpI4SOIgiYMkDpI4SOIgiYMkDtLQ/Rw7dvwh6UY/3Dc5Rri+erfFR+ziGGdzfYhjqG31IY7RNtSHOEjiWMFWhoc4SOIgiYMkDpI4SOIgiYMkDpI4SBvez/Hmx4e/f/jx6dvxK/kP3799PvLbh5fPhq3kCJNjRt+/fT5ezxjimNfqfYhjauv2IY7ZrdiHOEji2IC1hoc4SOIgiYMkDpI4SOIgiYMkDpI4SBvez/F/Hj15sfYSfvv65dPaSzjG5CCJgyQOkjhIJ3dDOvk94FRMDpI4SOIgiYMkDpI4SOIgiYMkDpI4SCf3+Nx+jrszOUjiIImDJA7Syd2QTn4POBWTgyQOkjhI4iCJg7RgHBv9jm5+MTlIy8ZheGza4pNDH9s14rKij40a9Pj8po8ZvonZfo67G/rZyvERMkM63ObdCkkcJHGQ7OcgmRwkcZDEQRIHSRykieLwEcxsJoqD2cwVh+ExlbniOOhjJtPFcdDHNCZ9fL7c/g/7Oe5u0jhuHB8hj9+/GraS0zTjZYVJiIMkDtLU9xxLmPwecComB0kcJHGQxEESB0kcG/Dw8tkqxxUHSRyzW2tsHMQxuRXLOIhjZuuWcTjBx+ebsHoWN87OLx6svQYm5bJCEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkH4CJqNn/5WcYywAAAAASUVORK5CYII=">
+<title>Pass Trainer — Caravan breakfast</title>
+<style>
+:root{
+ --bg:#12161c;--rail:#1b212b;--rail2:#232c38;--line:#2c3644;
+ --ink:#c9d1d9;--dim:#8592a3;--faint:#5c6774;
+ --chit:#f4efe2;--cink:#20242b;--cline:#d8d0bd;
+ --go:#3fb96b;--god:#2f9b57;--age:#e8a13a;--late:#e05a4d;--focus:#7fd0ff;--pur:#c77dff;
+ --ui:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+ --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:16px;line-height:1.45;
+ -webkit-font-smoothing:antialiased;overscroll-behavior:none;
+ padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+button{font-family:inherit;font-size:inherit;color:inherit;background:none;border:none;cursor:pointer;touch-action:manipulation}
+input,select,textarea{font-size:16px!important;font-family:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:6px}
+#app{max-width:600px;margin:0 auto;min-height:100%;display:flex;flex-direction:column}
+.screen{display:none;flex:1;flex-direction:column;padding:14px 16px 28px}
+.screen.on{display:flex}
+.hide{display:none!important}
+
+.top{display:flex;align-items:center;gap:12px;padding:4px 0 12px}
+.back{width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:11px;background:var(--rail);font-size:21px}
+.top h2{font-size:17px;margin:0;font-weight:650;flex:1}
+.meta{font-family:var(--mono);font-size:12px;color:var(--dim)}
+
+.brand{padding:6px 0 2px}
+.brand .pill{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:1.4px}
+.brand h1{font-size:29px;margin:.12em 0 .1em;font-weight:750;letter-spacing:-.5px}
+.brand p{margin:0;color:var(--dim);font-size:14.5px;max-width:46ch}
+.status{display:flex;gap:9px;margin:15px 0 6px}
+.stat{flex:1;background:var(--rail);border:1px solid var(--line);border-radius:12px;padding:9px 11px}
+.stat b{display:block;font-family:var(--mono);font-size:19px;font-weight:600}
+.stat span{font-size:11px;color:var(--dim)}
+.stat.due b{color:var(--age)}
+
+.modes{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.mode{display:flex;align-items:center;gap:13px;text-align:left;width:100%;background:var(--rail);
+ border:1px solid var(--line);border-left:4px solid var(--go);border-radius:12px;padding:14px}
+.mode:active{transform:scale(.985)}
+.mode .mk{font-family:var(--mono);font-size:13px;color:var(--faint);width:22px;text-align:center;flex:none}
+.mode .mt{flex:1}.mode .mt b{display:block;font-size:16px;font-weight:640}
+.mode .mt small{color:var(--dim);font-size:12.5px}
+.mode .arw{color:var(--faint);font-size:20px}
+.mode.m2{border-left-color:var(--age)}.mode.m3{border-left-color:var(--late)}
+.mode.m4{border-left-color:var(--pur)}.mode.m5{border-left-color:var(--faint)}
+.foot{margin-top:15px;display:flex;gap:9px}
+.foot button{flex:1;background:var(--rail2);border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--dim);font-size:13px}
+
+/* chit */
+.chit{background:var(--chit);color:var(--cink);border-radius:6px;font-family:var(--mono);
+ padding:10px 11px 12px;box-shadow:0 6px 18px rgba(0,0,0,.35);position:relative;overflow:hidden}
+.chit::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--go)}
+.chit.age::before{background:var(--age)}.chit.late::before{background:var(--late)}
+.chit .crow{display:flex;justify-content:space-between;font-size:11.5px;border-bottom:1px dashed var(--cline);
+ padding-bottom:6px;margin-bottom:7px;color:#4a4a44}
+.chit .crow b{color:#111;font-weight:700}
+.chit .li{display:flex;gap:7px;font-size:14.5px;line-height:1.45;padding:1px 0}
+.chit .li .q{font-weight:700;min-width:18px}
+.chit .li .d{font-weight:650;letter-spacing:.2px}
+.chit .mod{margin:0 0 2px 25px;font-size:12px;color:#5c554a}
+.chit .mod.alg{color:#a3271b;font-weight:700}
+.chit .mod .tag{display:inline-block;background:#f2d7d2;color:#a3271b;border-radius:4px;padding:0 5px;margin-right:4px}
+.chit .mod .add{color:#3c5a2e}
+.chit .mod .ck{color:#1f4f6b;font-weight:700}
+.cd{height:5px;background:#e2dccb;border-radius:3px;margin-top:8px;overflow:hidden}
+.cd i{display:block;height:100%;width:100%;background:var(--go);transition:width .2s linear}
+
+/* rail (stack mode) */
+.railwrap{display:flex;gap:9px;overflow-x:auto;padding:4px 2px 10px;-webkit-overflow-scrolling:touch}
+.tk{flex:none;width:168px;border-radius:8px;background:var(--chit);color:var(--cink);font-family:var(--mono);
+ padding:9px 10px;position:relative;overflow:hidden;border:2px solid transparent}
+.tk.flip{background:#2a333f;color:var(--dim);border-color:var(--line)}
+.tk.sel{border-color:var(--focus)}
+.tk .th{display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px;color:#4a4a44}
+.tk.flip .th{color:var(--faint)}
+.tk .th b{color:#111}.tk.flip .th b{color:var(--ink)}
+.tk .tl{font-size:12.5px;line-height:1.35;max-height:232px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.tk.big{width:196px}
+.tk .cnt{background:#20242b;color:#f4efe2;border-radius:4px;padding:0 5px;font-size:10px;font-weight:700}
+.tk.flip .cnt{background:var(--line);color:var(--ink)}
+.tk .tm{font-size:11px;color:#6b6355}
+.tk .abar{height:4px;background:rgba(0,0,0,.15);border-radius:3px;margin-top:7px;overflow:hidden}
+.tk .abar i{display:block;height:100%;background:var(--go)}
+.tk.warn .abar i{background:var(--age)}.tk.crit .abar i{background:var(--late)}
+.tk.crit{animation:pulse .8s infinite alternate}
+@keyframes pulse{from{box-shadow:0 0 0 0 rgba(224,90,77,0)}to{box-shadow:0 0 0 3px rgba(224,90,77,.5)}}
+.railmeta{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11.5px;color:var(--dim);margin-bottom:5px}
+.cap{height:6px;background:#222a34;border-radius:4px;overflow:hidden;margin-bottom:10px}
+.cap i{display:block;height:100%;background:var(--go);transition:width .3s,background .3s}
+
+/* builder */
+.card{background:var(--rail);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:11px}
+.card h3{margin:0 0 8px;font-size:12.5px;color:var(--dim);font-weight:600;letter-spacing:.3px}
+.palette{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:var(--rail2);border:1px solid var(--line);border-radius:19px;padding:8px 12px;font-size:13px;min-height:40px}
+.chip.on{background:var(--go);border-color:var(--go);color:#0c150f;font-weight:650}
+.chip.alg.on{background:var(--late);border-color:var(--late);color:#1a0c0a}
+.chip.add.on{background:#4f7d3a;border-color:#4f7d3a;color:#0c150c}
+.chip.cook.on{background:#2b6c92;border-color:#2b6c92;color:#eaf6ff}
+.chip.sm{padding:6px 10px;font-size:12px;min-height:34px}
+.built{display:flex;flex-direction:column;gap:9px}
+.brow{background:var(--rail2);border:1px solid var(--line);border-radius:10px;padding:9px 10px}
+.bt{display:flex;align-items:center;gap:9px}
+.bt .name{flex:1;font-weight:640;font-size:14.5px}
+.qbtn{width:34px;height:34px;border-radius:8px;background:var(--rail);border:1px solid var(--line);font-size:18px;
+ display:flex;align-items:center;justify-content:center}
+.qn{font-family:var(--mono);min-width:22px;text-align:center}
+.rm{color:var(--faint);font-size:18px;width:32px;height:34px}
+.mgrp{margin-top:8px}
+.mgrp .lbl{font-size:10.5px;color:var(--faint);font-family:var(--mono);letter-spacing:.5px;margin-bottom:4px}
+.empty{color:var(--faint);font-size:13px;text-align:center;padding:14px 0}
+
+.actions{position:sticky;bottom:0;background:linear-gradient(to top,var(--bg) 66%,transparent);padding-top:11px;display:flex;gap:9px}
+.btn{flex:1;border-radius:12px;padding:15px;font-size:16px;font-weight:680;text-align:center;min-height:52px}
+.btn.primary{background:var(--go);color:#08130c}
+.btn.primary:active{background:var(--god)}
+.btn.ghost{background:var(--rail);border:1px solid var(--line);flex:none;padding:15px 17px}
+.btn.warn{background:var(--late);color:#160807}
+.btn[disabled]{opacity:.4}
+
+.prep{text-align:center;padding:34px 0 16px}
+.prep .n{font-family:var(--mono);font-size:58px;font-weight:700;color:var(--go)}
+.prep p{color:var(--dim);max-width:40ch;margin:0 auto}
+.verdict{text-align:center;padding:6px 0 4px}
+.verdict .big{font-size:22px;font-weight:720}
+.verdict.good .big{color:var(--go)}.verdict.bad .big{color:var(--late)}.verdict.part .big{color:var(--age)}
+.verdict small{color:var(--dim);display:block;margin-top:2px}
+.diff{display:flex;flex-direction:column;gap:5px;margin-top:6px}
+.dl{font-family:var(--mono);font-size:12.5px;padding:7px 9px;border-radius:8px;background:var(--rail2);border:1px solid var(--line);line-height:1.4}
+.dl.ok{color:var(--go)}.dl.miss{color:var(--late)}.dl.extra{color:var(--age)}
+.coach{background:#171e17;border:1px solid #26361f;border-radius:10px;padding:11px;font-size:13px;color:#b7d3ad;margin-top:8px}
+.coach b{color:#d6efcd}
+.prompt{background:var(--rail);border:1px solid var(--line);border-radius:12px;padding:11px 13px;text-align:center;margin-bottom:10px}
+.prompt b{font-size:17px}.prompt small{color:var(--dim);display:block}
+.q-dish{font-size:21px;font-weight:720;text-align:center;padding:8px 0 2px}
+.q-ask{text-align:center;color:var(--dim);font-size:13.5px;margin-bottom:9px}
+.box-tags{display:flex;gap:4px;justify-content:center;margin-top:7px}
+.box-tags i{width:20px;height:5px;border-radius:3px;background:var(--line)}
+.box-tags i.f{background:var(--go)}
+.lives{font-family:var(--mono);letter-spacing:3px;font-size:17px}
+.prose{font-size:14.5px;overflow:auto}
+.prose h3{font-size:15px;margin:17px 0 5px;color:#fff}
+.prose p{margin:6px 0}.prose .k{color:var(--go);font-weight:640}
+.prose ul{margin:6px 0;padding-left:18px}.prose li{margin:4px 0}
+.note{background:var(--rail);border:1px solid var(--line);border-radius:10px;padding:11px;font-size:13px;color:var(--dim);margin-top:10px}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#000;border:1px solid var(--line);
+ color:#fff;padding:10px 16px;border-radius:22px;font-size:13.5px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:60}
+.toast.on{opacity:.96}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app">
+
+<section id="s-home" class="screen on">
+  <div class="brand">
+    <div class="pill">CARAVAN CITY · BREAKFAST · SS26</div>
+    <h1>Pass Trainer</h1>
+    <p>Hold long orders when the rail fills. Built on the spring/summer breakfast board.</p>
+  </div>
+  <div class="status">
+    <div class="stat"><b id="st-streak">0</b><span>day streak</span></div>
+    <div class="stat due"><b id="st-due">0</b><span>cards due</span></div>
+    <div class="stat"><b id="st-level">1</b><span>recall level</span></div>
+    <div class="stat"><b id="st-stack">0</b><span>deepest rail</span></div>
+  </div>
+  <div class="modes">
+    <button class="mode m1" onclick="Prep.start()"><span class="mk">01</span><span class="mt"><b>Menu Prep</b><small>What's on each dish, and its diet tags · spaced repetition</small></span><span class="arw">›</span></button>
+    <button class="mode m2" onclick="Recall.start()"><span class="mk">02</span><span class="mt"><b>Read &amp; Recall</b><small>One ticket flashes, you rebuild it · scales to you</small></span><span class="arw">›</span></button>
+    <button class="mode m3" onclick="Stack.intro()"><span class="mk">03</span><span class="mt"><b>The Stack</b><small>Endless rail — big tables, runs until you close it</small></span><span class="arw">›</span></button>
+    <button class="mode m4" onclick="Allergen.start()"><span class="mk">04</span><span class="mt"><b>Allergy Watch</b><small>Catch every flag before it fires</small></span><span class="arw">›</span></button>
+    <button class="mode m5" onclick="go('s-science')"><span class="mk">05</span><span class="mt"><b>Why this works</b><small>The method behind each drill</small></span><span class="arw">›</span></button>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <h3>Time to memorise a ticket</h3>
+    <div class="palette" id="studyopts"></div>
+    <div class="q-ask" id="studynote" style="margin:9px 0 0"></div>
+  </div>
+  <div class="foot"><button onclick="go('s-help')">Save to your iPhone</button><button onclick="resetAll()">Reset progress</button></div>
+</section>
+
+<section id="s-prep" class="screen"><div class="top"><button class="back" onclick="Prep.quit()">‹</button><h2>Menu Prep</h2><span class="meta" id="prep-meta"></span></div><div id="prep-body" style="flex:1"></div></section>
+<section id="s-recall" class="screen"><div class="top"><button class="back" onclick="Recall.quit()">‹</button><h2>Read &amp; Recall</h2><span class="meta" id="recall-meta"></span></div><div id="recall-body" style="flex:1"></div></section>
+<section id="s-stack" class="screen"><div class="top"><button class="back" onclick="Stack.quit()">‹</button><h2>The Stack</h2><span class="meta" id="stack-meta"></span></div><div id="stack-body" style="flex:1"></div></section>
+<section id="s-alrg" class="screen"><div class="top"><button class="back" onclick="Allergen.quit()">‹</button><h2>Allergy Watch</h2><span class="meta" id="alrg-meta"></span></div><div id="alrg-body" style="flex:1"></div></section>
+
+<section id="s-science" class="screen">
+  <div class="top"><button class="back" onclick="go('s-home')">‹</button><h2>Why this works</h2></div>
+  <div class="prose">
+    <p>Nobody holds 15 tickets by concentrating harder. They hold them by <span class="k">chunking</span> and by having drilled the skill itself until the menu knowledge costs nothing.</p>
+    <h3>Working memory is about four slots</h3>
+    <p>You can hold roughly <b>3–4 items</b> at once (Cowan). "Veggie fry, eggs poached, wg bread" is one chunk to a chef who knows the dish and three to one who doesn't. Menu Prep makes the dish knowledge automatic so your slots stay free for what's <i>different</i> about this ticket.</p>
+    <h3>Recall beats re-reading</h3>
+    <p>Pulling something out of memory strengthens it far more than looking again — the <span class="k">testing effect</span> (Roediger &amp; Karpicke). Every mode makes you rebuild, never just recognise.</p>
+    <h3>Spacing, not cramming</h3>
+    <p>Menu Prep uses <span class="k">Leitner boxes</span>: nail a card and it returns in days, fumble it and it's back today. Spread reviews beat one long session (Cepeda et al.).</p>
+    <h3>Interference is the real enemy</h3>
+    <p>On a full rail, tickets blur into each other — that's <span class="k">proactive interference</span>, not you being useless. The Stack trains it directly: tickets stay up like the real screen, land while you're still holding the last ones, and you call them back out of order — exactly what the pass does to you. The moment you turn to the stove, the ticket is gone from view, so the drill hides it while you rebuild.</p>
+    <h3>Train just past your limit</h3>
+    <p>Difficulty tracks your performance (<span class="k">deliberate practice</span>, Ericsson). Read &amp; Recall moves a level at a time; The Stack speeds up arrivals until you're properly in the weeds, because that edge is where the ceiling moves.</p>
+    <div class="note"><b>Ten minutes:</b> 3 min Menu Prep → 5 min Read &amp; Recall → one Stack service. Daily beats long.</div>
+    <div class="note">Worth saying plainly: general "brain training" apps don't reliably make you better at anything except the app. What transfers is practising this exact task — read a ticket, hold it, call it back.</div>
+  </div>
+</section>
+
+<section id="s-help" class="screen">
+  <div class="top"><button class="back" onclick="go('s-home')">‹</button><h2>Save to your iPhone</h2></div>
+  <div class="prose">
+    <p>One file, fully offline once it's on the phone.</p>
+    <h3>Install</h3>
+    <ul>
+      <li>AirDrop or email the file to yourself, or save it into Files.</li>
+      <li>Open it so it's showing in <b>Safari</b>. If it opens in the Files preview instead, tap share → <b>Open in Safari</b>.</li>
+      <li>Tap <b>share</b> → <b>Add to Home Screen</b> → <b>Add</b>.</li>
+    </ul>
+    <p>Launch it from that icon: full screen, no signal needed. Your streak, levels and card boxes save on the phone.</p>
+    <div class="note">If <b>Add to Home Screen</b> doesn't appear, Safari has the file open as a local preview and progress may not persist between sessions. The drills still work perfectly — you'd just be starting the levels fresh each time.</div>
+  </div>
+</section>
+
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+var Store=(function(){var mem={},ok=false;
+ try{localStorage.setItem("__t","1");localStorage.removeItem("__t");ok=true;}catch(e){}
+ return{get:function(k,d){try{var v=ok?localStorage.getItem(k):mem[k];return v==null?d:JSON.parse(v);}catch(e){return d;}},
+        set:function(k,v){try{var s=JSON.stringify(v);if(ok)localStorage.setItem(k,s);else mem[k]=s;}catch(e){mem[k]=JSON.stringify(v);}},
+        works:function(){return ok;}};})();
+
+/* ================= THE BOARD (SS26 breakfast) ================= */
+var COOKS=["scrambled","poached","fried"];
+var BREADS=["sourdough","wg seeded"];
+/* asks a waiter actually calls through */
+var ASKS=["no chilli","sauce on the side","well done","no butter","hot plate","first away"];
+/* allergy / diet flags */
+var FLAGS=["wg bread","no dairy","no egg","nut allergy","vegan","coeliac — see manager"];
+
+var DISHES=[
+ {n:"Bowl of fresh fruit",   comp:["berries","banana","pineapple","grapes","cardamom syrup"], tags:["pb","wg"], adds:["greek yoghurt","coconut yoghurt"]},
+ {n:"Maple sesame granola",  comp:["golden spiced yoghurt","strawberries","toasted hazelnuts"], tags:["v","wg"], adds:[]},
+ {n:"Steel-cut oat porridge",comp:["medjool dates","black sesame","tahini","cinnamon"], tags:["pb"], adds:["strawberries"]},
+ {n:"Hot-smoked salmon, scrambled eggs", comp:["hot-smoked salmon","scrambled eggs","toast"], tags:[], adds:[], bread:true},
+ {n:"Smashed avocado",       comp:["spiced crispy chickpeas","sprouts","chilli","lemon","toast"], tags:["pb"], adds:["poached egg","2 poached eggs"], bread:true},
+ {n:"Spreads",               comp:["salted butter","fruit jam","toast"], tags:["v"], adds:[], bread:true},
+ {n:"2 free-range eggs",     comp:["2 eggs","toast"], tags:["v"], adds:[], bread:true, cook:true},
+ {n:"Vanilla pancakes",      comp:["vanilla pancakes"], tags:[], adds:[], build:["bacon, butter, maple","cream cheese, strawberries, praline"]},
+ {n:"Jalapeno cornbread, fried egg", comp:["spinach","curd cheese","mojo verde","chilli butter","fried egg"], tags:["v"], adds:["chorizo"]},
+ {n:"Poached eggs, whipped yoghurt", comp:["garlic","fenugreek-chilli butter","gunpowder","parsley","sesame","house flatbread"], tags:["v"], adds:[]},
+ {n:"Chorizo and potato hash",comp:["poached eggs","spinach","tomato fresca","saffron buttermilk dressing"], tags:["wg"], adds:[]},
+ {n:"Baked eggs",            comp:["spiced tomato, pepper and chickpea ragu","rose harissa","greek yoghurt","parsley","flatbread"], tags:["v"], adds:["lamb merguez"]},
+ {n:"The fry",               comp:["2 eggs","thick cut bacon","pork sausage","slow roasted tomato","roasted mushroom","house spiced black beans","toasted sourdough"], tags:[], adds:[], cook:true, bread:true},
+ {n:"Veggie fry",            comp:["2 eggs","grilled halloumi","smashed avocado","slow roasted tomato","roasted mushroom","house spiced black beans","toasted sourdough"], tags:["v"], adds:[], cook:true, bread:true}
+];
+/* "Smashed avocado" is both a toast dish and a side, so the side is labelled distinctly:
+   one ticket must never carry two items with the same name or they cannot be told apart. */
+var SIDES=["Slow roasted tomatoes","Thyme-roasted field mushrooms","Smashed avo (side)","Grilled halloumi","Thick cut bacon","Grilled chorizo","Pork sausage","Lamb merguez"];
+var ALLDISH=(function(){var seen={},out=[];
+  DISHES.map(function(d){return d.n;}).concat(SIDES).forEach(function(n){
+    if(!seen[n]){seen[n]=1;out.push(n);}});
+  return out;})();
+/* What sells most on this section. The whole board still comes up —
+   these just lead. Keep the spread tight or the cereal section never appears. */
+var POPULAR={
+ "The fry":3.4,"Veggie fry":3.0,"Smashed avocado":3.0,"Baked eggs":2.6,
+ "Jalapeno cornbread, fried egg":2.6,"Chorizo and potato hash":2.2,"Poached eggs, whipped yoghurt":2.2
+};
+function weightOf(n){return POPULAR[n]||(SIDES.indexOf(n)>=0?0.9:1.25);}
+function weightedSample(pool,k){
+  var left=pool.slice(),out=[];
+  while(out.length<k&&left.length){
+    var tot=0;left.forEach(function(n){tot+=weightOf(n);});
+    var r=Math.random()*tot,acc=0,idx=0;
+    for(var i=0;i<left.length;i++){acc+=weightOf(left[i]);if(r<=acc){idx=i;break;}}
+    out.push(left.splice(idx,1)[0]);
+  }
+  return out;
+}
+function dishByName(n){for(var i=0;i<DISHES.length;i++)if(DISHES[i].n===n)return DISHES[i];return null;}
+var TAGPOOL=["pb","v","wg","wd"];
+var COMPPOOL=(function(){var s={};DISHES.forEach(function(d){d.comp.forEach(function(c){s[c]=1;});});return Object.keys(s);})();
+
+/* ================= helpers ================= */
+function $(i){return document.getElementById(i);}
+function el(h){var d=document.createElement('div');d.innerHTML=h.trim();return d.firstChild;}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function sample(a,n){return shuffle(a).slice(0,Math.max(0,Math.min(n,a.length)));}
+function clamp(x,a,b){return Math.max(a,Math.min(b,x));}
+function today(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+function toast(m){var t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove('on');},1500);}
+var SCREENS=['s-home','s-prep','s-recall','s-stack','s-alrg','s-science','s-help'];
+function go(id){SCREENS.forEach(function(s){$(s).classList.toggle('on',s===id);});window.scrollTo(0,0);}
+function beep(hz,ms){try{var c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();
+ o.connect(g);g.connect(c.destination);o.frequency.value=hz||880;g.gain.value=.07;o.start();
+ setTimeout(function(){o.stop();c.close();},ms||160);}catch(e){}}
+
+/* How long you get to study a ticket before it has to come from memory.
+   0 = the old quick flash, which scales with your level. */
+var STUDY=Store.get("v2_study",90000);
+function setStudy(ms){STUDY=ms;Store.set("v2_study",ms);renderStudy();}
+function fmtMs(ms){var s=Math.round(ms/1000);var m=Math.floor(s/60);s=s%60;
+  return m?(m+':'+(s<10?'0':'')+s):(s+'s');}
+function renderStudy(){
+  var host=$('studyopts');if(!host)return;host.innerHTML='';
+  [[90000,'1:30'],[120000,'2:00'],[180000,'3:00'],[0,'Quick flash']].forEach(function(o){
+    var c=el('<button class="chip'+(STUDY===o[0]?' on':'')+'">'+o[1]+'</button>');
+    c.onclick=function(){setStudy(o[0]);};
+    host.appendChild(c);
+  });
+  $('studynote').textContent = STUDY
+    ? 'You get '+fmtMs(STUDY)+' with a ticket in front of you, then it comes from memory. Tap "Got it" to go early.'
+    : 'Ticket shows for a couple of seconds only — the hardest setting.';
+}
+
+function bumpStreak(){var last=Store.get("v2_lastDay",null),s=Store.get("v2_streak",0),t=today();
+ if(last===t)return;var y=new Date();y.setDate(y.getDate()-1);
+ var yk=y.getFullYear()+'-'+(y.getMonth()+1)+'-'+y.getDate();
+ Store.set("v2_streak",last===yk?s+1:1);Store.set("v2_lastDay",t);}
+function cardKeys(){var k=[];DISHES.forEach(function(d){k.push('comp::'+d.n);k.push('tags::'+d.n);});return k;}
+function dueCount(){var b=Store.get("v2_leitner",{}),now=Date.now(),n=0;
+ cardKeys().forEach(function(k){var c=b[k];if(!c||c.due<=now)n++;});return n;}
+function refreshHome(){$('st-streak').textContent=Store.get("v2_streak",0);$('st-due').textContent=dueCount();
+ $('st-level').textContent=Store.get("v2_level",1);$('st-stack').textContent=Store.get("v2_deepest",0);}
+function resetAll(){if(!window.confirm||window.confirm("Clear streak, levels and card boxes?")){
+ ["v2_streak","v2_lastDay","v2_level","v2_leitner","v2_deepest","v2_alrgBest"].forEach(function(k){Store.set(k,null);});
+ Store.set("v2_level",1);Store.set("v2_leitner",{});refreshHome();toast("Progress cleared");}}
+
+/* ================= ticket generation ================= */
+function makeItem(dishName,modProb,qty){
+  var d=dishByName(dishName), it={dish:dishName,qty:qty||1,cook:null,bread:null,build:null,adds:[],asks:[],flags:[]};
+  if(!d)return it;                               // a side
+  if(d.cook&&Math.random()<0.85) it.cook=pick(COOKS);
+  if(d.build) it.build=pick(d.build);
+  if(d.bread&&Math.random()<modProb*0.8) it.bread=pick(BREADS);
+  if(d.adds.length&&Math.random()<modProb) it.adds=sample(d.adds,1);
+  if(Math.random()<modProb*0.55) it.asks=sample(ASKS,1);
+  if(Math.random()<modProb*0.5) it.flags=sample(FLAGS,1);
+  return it;
+}
+/* A ticket is a number of PLATES, not a number of different dishes. A ten-top
+   is "3 frys, 2 veggie frys, 2 baked eggs, 3 avo" — repeats carry as quantities. */
+function makeTicket(o){
+  o=o||{};
+  var plates=o.plates||o.items||1, mp=o.modProb==null?0.5:o.modProb;
+  var uniq=plates<=3?plates:clamp(Math.round(plates*0.72)+Math.floor(Math.random()*2),3,Math.min(plates,9));
+  var names=weightedSample(ALLDISH,uniq);
+  var qty={};names.forEach(function(n){qty[n]=1;});
+  var left=plates-names.length,guard=0;
+  while(left>0&&guard++<200){
+    var n=weightedSample(names,1)[0];
+    if(qty[n]<4){qty[n]++;left--;}
+  }
+  return {table:Math.floor(Math.random()*42)+1,covers:plates,
+    items:names.map(function(n){return makeItem(n,mp,qty[n]);}),
+    plates:plates,no:1000+Math.floor(Math.random()*8999)};
+}
+function itemModsHTML(it){
+  var h='';
+  if(it.cook)h+='<div class="mod"><span class="ck">'+esc(it.cook.toUpperCase())+'</span></div>';
+  if(it.build)h+='<div class="mod">» '+esc(it.build)+'</div>';
+  if(it.bread)h+='<div class="mod">» '+esc(it.bread)+'</div>';
+  it.adds.forEach(function(a){h+='<div class="mod"><span class="add">ADD '+esc(a)+'</span></div>';});
+  it.asks.forEach(function(a){h+='<div class="mod">» '+esc(a)+'</div>';});
+  it.flags.forEach(function(f){h+='<div class="mod alg"><span class="tag">'+esc(f)+'</span></div>';});
+  return h;
+}
+function chitHTML(tk,o){
+  o=o||{};
+  var rows=tk.items.map(function(it){
+    return '<div class="li"><span class="q">'+it.qty+'×</span><span class="d">'+esc(it.dish.toUpperCase())+'</span></div>'+itemModsHTML(it);}).join('');
+  return '<div class="chit'+(o.cls?' '+o.cls:'')+'">'+
+   '<div class="crow"><span>TABLE <b>'+tk.table+'</b></span><span>'+tk.covers+' cov</span><span>#'+tk.no+'</span></div>'+
+   rows+(o.cd?'<div class="cd"><i style="width:100%"></i></div>':'')+'</div>';
+}
+
+/* ================= grading ================= */
+function sig(it){return [it.cook||'-',it.bread||'-',it.build||'-',
+  it.adds.slice().sort().join(','),it.asks.slice().sort().join(','),it.flags.slice().sort().join(',')].join('|');}
+function grade(truth,ans){
+  var lines=[],right=0;
+  var am={};ans.forEach(function(a){am[a.dish]=a;});
+  var tm={};truth.items.forEach(function(t){tm[t.dish]=t;});
+  truth.items.forEach(function(t){
+    var a=am[t.dish];
+    if(!a){lines.push({cls:'miss',txt:'MISSED  '+t.qty+'× '+t.dish.toUpperCase()});return;}
+    var iss=[];
+    if(a.qty!==t.qty)iss.push('qty '+a.qty+'→'+t.qty);
+    if((a.cook||null)!==(t.cook||null))iss.push('cook '+(a.cook||'none')+'→'+(t.cook||'none'));
+    if((a.bread||null)!==(t.bread||null))iss.push('bread '+(a.bread||'none')+'→'+(t.bread||'none'));
+    if((a.build||null)!==(t.build||null))iss.push('build wrong');
+    ['adds','asks','flags'].forEach(function(k){
+      var miss=t[k].filter(function(v){return a[k].indexOf(v)<0;});
+      var extra=a[k].filter(function(v){return t[k].indexOf(v)<0;});
+      if(miss.length)iss.push('missed '+miss.join(', '));
+      if(extra.length)iss.push('added '+extra.join(', '));
+    });
+    if(iss.length)lines.push({cls:'extra',txt:t.dish.toUpperCase()+' — '+iss.join(' · ')});
+    else{right++;lines.push({cls:'ok',txt:'✓ '+t.qty+'× '+t.dish.toUpperCase()+modLbl(t)});}
+  });
+  ans.forEach(function(a){if(!tm[a.dish])lines.push({cls:'extra',txt:'NOT ON TICKET  '+a.dish.toUpperCase()});});
+  return{pass:right===truth.items.length&&ans.length===truth.items.length,correct:right,total:truth.items.length,lines:lines};
+}
+function modLbl(it){var p=[];if(it.cook)p.push(it.cook);if(it.bread)p.push(it.bread);
+ if(it.build)p.push(it.build);p=p.concat(it.adds,it.asks,it.flags);
+ return p.length?'  ('+p.join(', ')+')':'';}
+
+/* ================= builder ================= */
+function Builder(host,onCheck,label){
+  var state=[];
+  var wrap=el('<div></div>');
+  var pal=el('<div class="card"><h3>Which dishes were on it?</h3><div class="palette" id="bpal"></div></div>');
+  var blt=el('<div class="card"><h3>Your ticket</h3><div class="built" id="bbuilt"></div></div>');
+  wrap.appendChild(pal);wrap.appendChild(blt);
+  var act=el('<div class="actions"><button class="btn ghost" id="bclr">Clear</button><button class="btn primary" id="bchk">'+(label||'Check')+'</button></div>');
+  wrap.appendChild(act);
+  host.innerHTML='';host.appendChild(wrap);
+  var palEl=wrap.querySelector('#bpal');
+  ALLDISH.forEach(function(n){
+    var c=el('<button class="chip">'+esc(n)+'</button>');
+    c.onclick=function(){toggle(n);};
+    palEl.appendChild(c);
+  });
+  function toggle(n){
+    var i=-1;state.forEach(function(s,k){if(s.dish===n)i=k;});
+    if(i>=0)state.splice(i,1);
+    else state.push({dish:n,qty:1,cook:null,bread:null,build:null,adds:[],asks:[],flags:[]});
+    sync();
+  }
+  function sync(){
+    var names=state.map(function(s){return s.dish;});
+    [].forEach.call(palEl.children,function(ch){ch.classList.toggle('on',names.indexOf(ch.textContent)>=0);});
+    var b=wrap.querySelector('#bbuilt');b.innerHTML='';
+    if(!state.length){b.appendChild(el('<div class="empty">Nothing added yet</div>'));return;}
+    state.forEach(function(row,idx){
+      var d=dishByName(row.dish);
+      var r=el('<div class="brow"></div>');
+      var top=el('<div class="bt"></div>');
+      top.appendChild(el('<span class="name">'+esc(row.dish)+'</span>'));
+      var mi=el('<button class="qbtn">–</button>');mi.onclick=function(){row.qty=clamp(row.qty-1,1,9);sync();};
+      var qn=el('<span class="qn">'+row.qty+'×</span>');
+      var pl=el('<button class="qbtn">+</button>');pl.onclick=function(){row.qty=clamp(row.qty+1,1,9);sync();};
+      var rm=el('<button class="rm">✕</button>');rm.onclick=function(){state.splice(idx,1);sync();};
+      top.appendChild(mi);top.appendChild(qn);top.appendChild(pl);top.appendChild(rm);
+      r.appendChild(top);
+      if(d&&d.cook)r.appendChild(seg('EGGS',COOKS,'cook',row,'cook'));
+      if(d&&d.bread)r.appendChild(seg('BREAD',BREADS,'bread',row,'bread'));
+      if(d&&d.build)r.appendChild(seg('BUILD',d.build,'build',row,'build'));
+      if(d&&d.adds.length)r.appendChild(multi('ADD',d.adds,'add',row,'adds'));
+      r.appendChild(multi('ASKS',ASKS,'',row,'asks'));
+      r.appendChild(multi('ALLERGY / DIET',FLAGS,'alg',row,'flags'));
+      b.appendChild(r);
+    });
+  }
+  function seg(lbl,opts,cls,row,key){
+    var g=el('<div class="mgrp"><div class="lbl">'+lbl+'</div><div class="palette"></div></div>');
+    var p=g.querySelector('.palette');
+    opts.forEach(function(o){
+      var c=el('<button class="chip sm '+cls+(row[key]===o?' on':'')+'">'+esc(o)+'</button>');
+      c.onclick=function(){row[key]=(row[key]===o?null:o);sync();};
+      p.appendChild(c);});
+    return g;
+  }
+  function multi(lbl,opts,cls,row,key){
+    var g=el('<div class="mgrp"><div class="lbl">'+lbl+'</div><div class="palette"></div></div>');
+    var p=g.querySelector('.palette');
+    opts.forEach(function(o){
+      var on=row[key].indexOf(o)>=0;
+      var c=el('<button class="chip sm '+cls+(on?' on':'')+'">'+esc(o)+'</button>');
+      c.onclick=function(){var i=row[key].indexOf(o);if(i>=0)row[key].splice(i,1);else row[key].push(o);sync();};
+      p.appendChild(c);});
+    return g;
+  }
+  wrap.querySelector('#bclr').onclick=function(){state=[];sync();};
+  wrap.querySelector('#bchk').onclick=function(){onCheck(state);};
+  sync();
+}
+
+var COACH=["<b>Chunk by dish:</b> \"two frys, one poached\" is one chunk, not six items.",
+ "<b>Flags first:</b> read the allergy line before the dish — it changes how you cook it.",
+ "<b>Say it once:</b> whisper the ticket as a short phrase. Spoken chunks survive interference.",
+ "<b>Shape then detail:</b> how many plates, then what's different about each.",
+ "<b>Eggs are the trap:</b> cook order is the most-missed mod on the whole board.",
+ "<b>Group the rail:</b> two tables both want poached — fire them together, hold them as one."];
+
+/* ================= 02 READ & RECALL ================= */
+var Recall={
+ start:function(){bumpStreak();go('s-recall');this.round();},
+ quit:function(){clearTimeout(this._t);go('s-home');refreshHome();},
+ opts:function(l){var plates=clamp(3+Math.round(l*0.72),4,12);
+   return{plates:plates,modProb:clamp(0.35+l*0.055,0.35,0.9),
+     showMs:STUDY?STUDY:plates*Math.max(700,1900-l*85)};},
+ round:function(){
+   var l=Store.get("v2_level",1),o=this.opts(l);
+   this.truth=makeTicket(o);this.o=o;
+   $('recall-meta').textContent='LVL '+l+' · '+o.plates+' plate'+(o.plates>1?'s':'');
+   var b=$('recall-body');b.innerHTML='';
+   b.appendChild(el('<div class="prep"><div class="n">'+fmtMs(o.showMs)+'</div><p>Read it, then rebuild it from memory.</p></div>'));
+   var self=this;this._t=setTimeout(function(){self.show();},600);
+ },
+ show:function(){
+   var b=$('recall-body');b.innerHTML='';
+   b.appendChild(el(chitHTML(this.truth,{cd:true})));
+   var self=this;
+   var left=el('<div class="railmeta" style="margin-top:9px"><span id="rleft"></span><span>tap when you have it</span></div>');
+   b.appendChild(left);
+   var a=el('<div class="actions"><button class="btn primary" id="rgot">Got it — hide the ticket</button></div>');
+   b.appendChild(a);
+   $('rgot').onclick=function(){clearTimeout(self._t);self.ask();};
+   var bar=b.querySelector('.cd i'),st=Date.now(),dur=this.o.showMs;
+   (function t(){var el2=$('rleft');
+     var p=1-(Date.now()-st)/dur;
+     if(p<=0){self.ask();return;}
+     bar.style.width=(p*100)+'%';bar.style.background=p>.5?'var(--go)':(p>.25?'var(--age)':'var(--late)');
+     if(el2)el2.textContent=fmtMs(dur*p)+' left';
+     self._t=setTimeout(t,200);})();
+ },
+ ask:function(){var self=this;Builder($('recall-body'),function(a){self.check(a);},'Check ticket');},
+ check:function(ans){
+   var r=grade(this.truth,ans),l=Store.get("v2_level",1);
+   var nl=clamp(r.pass?l+1:l-1,1,14);Store.set("v2_level",nl);
+   var b=$('recall-body');b.innerHTML='';
+   var v=r.pass?'good':(r.correct?'part':'bad');
+   b.appendChild(el('<div class="verdict '+v+'"><div class="big">'+(r.pass?'Clean ticket':(r.correct?'Nearly':'Dropped it'))+
+     '</div><small>'+(r.pass&&nl>l?'Level up → '+nl:'Level '+nl+' · '+r.correct+'/'+r.total)+'</small></div>'));
+   var df=el('<div class="diff"></div>');r.lines.forEach(function(x){df.appendChild(el('<div class="dl '+x.cls+'">'+esc(x.txt)+'</div>'));});
+   b.appendChild(df);b.appendChild(el('<div class="coach">'+pick(COACH)+'</div>'));
+   var self=this;
+   var a=el('<div class="actions"><button class="btn ghost" id="rq">Done</button><button class="btn primary" id="rn">Next ticket</button></div>');
+   b.appendChild(a);
+   $('rn').onclick=function(){self.round();};$('rq').onclick=function(){self.quit();};
+ }
+};
+
+/* ================= 03 THE STACK (live rail, up to 15) ================= */
+/* 'stay' = tickets remain readable on the rail, like the real pass screen.
+   'flip'  = they turn face-down after a few seconds (harder variant).       */
+var RAILMODE=Store.get("v2_railmode","stay");
+function setRailMode(m){RAILMODE=m;Store.set("v2_railmode",m);}
+/* false = tickets sit on the rail until you call them (service only ends when you say so) */
+var WALKOFF=Store.get("v2_walkoff",false);
+function setWalkoff(v){WALKOFF=v;Store.set("v2_walkoff",v);}
+var Stack={
+ WEEDS:15,          // the depth at which you are officially in the weeds
+ MAXRAIL:40,        // hard ceiling so the rail cannot grow without limit
+ intro:function(){
+   go('s-stack');var b=$('stack-body');b.innerHTML='';
+   $('stack-meta').textContent='';
+   b.appendChild(el('<div class="prep"><div class="n">∞</div><p>Tickets land and keep landing, and they get bigger — '+
+    'whole tables of 10 or 12 plates deep into service, mostly frys, avo, baked eggs and cornbread.<br><br>'+
+    'Tap one to call it: the screen clears and you rebuild it from memory. '+
+    'Past 15 on the rail you are in the weeds, but service does not stop. '+
+    'It runs until you close it.</p></div>'));
+   var self=this;
+   var opt=el('<div class="card"><h3>How the rail behaves</h3><div class="palette" id="rmode"></div></div>');
+   var pal=opt.querySelector('#rmode');
+   [['stay','Tickets stay up','Like the real screen'],
+    ['flip','Tickets flip after a few seconds','Harder']].forEach(function(o){
+     var c=el('<button class="chip'+(RAILMODE===o[0]?' on':'')+'">'+o[1]+'</button>');
+     c.onclick=function(){setRailMode(o[0]);self.intro();};
+     pal.appendChild(c);
+   });
+   opt.appendChild(el('<div class="q-ask" style="margin:9px 0 0">'+
+     (RAILMODE==='stay'
+       ? 'Tickets stay readable until you call them. The memory work is holding one in your head once you turn away.'
+       : 'Each ticket stays readable for '+(STUDY?fmtMs(STUDY):'a couple of seconds')+', then goes face-down. Change that on the home screen.')+'</div>'));
+   b.appendChild(opt);
+   var opt2=el('<div class="card"><h3>If you cannot get to a ticket</h3><div class="palette" id="wmode"></div></div>');
+   var pal2=opt2.querySelector('#wmode');
+   [[false,'It waits for you'],[true,'It walks off']].forEach(function(o){
+     var c=el('<button class="chip'+(WALKOFF===o[0]?' on':'')+'">'+o[1]+'</button>');
+     c.onclick=function(){setWalkoff(o[0]);self.intro();};
+     pal2.appendChild(c);
+   });
+   opt2.appendChild(el('<div class="q-ask" style="margin:9px 0 0">'+
+     (WALKOFF?'Overdue tickets leave the rail and count against you.'
+            :'Overdue tickets stay put and are marked late. Nothing disappears on you.')+'</div>'));
+   b.appendChild(opt2);
+   var a=el('<div class="actions"><button class="btn ghost" id="sq">Back</button><button class="btn primary" id="sgo">Start service</button></div>');
+   b.appendChild(a);
+   $('sgo').onclick=function(){self.start();};$('sq').onclick=function(){self.quit();};
+ },
+ quit:function(){this.stop();go('s-home');refreshHome();},
+ stop:function(){clearInterval(this._tick);clearTimeout(this._spawn);this.running=false;},
+ start:function(){
+   bumpStreak();
+   this.rail=[];this.sent=0;this.waste=0;this.walked=0;this.late=0;this.plated=0;
+   this.deepest=0;this.n=0;this.running=true;this.t0=Date.now();
+   this.render();this.spawn();
+   var self=this;
+   this._tick=setInterval(function(){self.tickAges();},250);
+ },
+ /* arrivals speed up the longer you survive */
+ /* arrivals keep tightening well into a long service */
+ gap:function(){var mins=(Date.now()-this.t0)/60000;
+   var g=Math.max(1800,9000-mins*1100);
+   if(this.rail.length>=this.WEEDS)g*=1.35;           // slight mercy once you are buried
+   return g+Math.random()*900;},
+ /* Plates on one table. Starts at a real table, not a single coffee, and climbs to 12. */
+ size:function(){
+   var mins=(Date.now()-this.t0)/60000;
+   var bigChance=clamp(0.12+mins*0.045,0.12,0.40);
+   if(Math.random()<bigChance){
+     var top=clamp(5+Math.floor(mins/1.2),6,12);
+     return 5+Math.floor(Math.random()*(top-4));
+   }
+   var mx=clamp(4+Math.floor(mins*0.8),5,8);
+   return 3+Math.floor(Math.random()*(mx-2));
+ },
+ spawn:function(){
+   if(!this.running)return;
+   if(this.rail.length>=this.MAXRAIL){                 // rail is full; hold arrivals, don't end service
+     var self0=this;this._spawn=setTimeout(function(){self0.spawn();},3000);return;
+   }
+   var tk=makeTicket({plates:this.size(),modProb:0.6});
+   tk.born=Date.now();
+   var quick=Math.max(1800,4200-(Date.now()-this.t0)/60000*900)+tk.items.length*600;
+   tk.readMs=STUDY?STUDY:quick;                       // how long it stays readable in flip mode
+   tk.lifeMs=tk.readMs+45000+tk.items.length*4000;    // never walks before you've had your time
+   tk.id=++this.n;
+   this.rail.push(tk);
+   this.deepest=Math.max(this.deepest,this.rail.length);
+   beep(this.rail.length>=this.WEEDS?520:660,90);
+   this.render();
+   var self=this;this._spawn=setTimeout(function(){self.spawn();},this.gap());
+ },
+ tickAges:function(){
+   if(!this.running)return;
+   var now=Date.now(),self=this,changed=false;
+   this.rail.slice().forEach(function(tk){
+     if(now-tk.born>tk.lifeMs){
+       if(WALKOFF){
+         self.rail.splice(self.rail.indexOf(tk),1);self.walked++;changed=true;beep(220,260);
+       }else if(!tk.late){
+         tk.late=true;self.late++;changed=true;beep(300,180);   // stays on the rail, just late
+       }
+     }
+   });
+   this.updateBars();
+   if(changed)this.render();
+ },
+ updateBars:function(){
+   var now=Date.now();
+   var wrap=$('stack-rail');if(!wrap)return;
+   this.rail.forEach(function(tk){
+     var n=document.getElementById('tk'+tk.id);if(!n)return;
+     var age=(now-tk.born)/tk.lifeMs,left=clamp(1-age,0,1);
+     var bar=n.querySelector('.abar i');if(bar)bar.style.width=(left*100)+'%';
+     n.classList.toggle('warn',left<=.5&&left>.22);
+     n.classList.toggle('crit',left<=.22);
+     if(RAILMODE==='flip'&&now-tk.born>tk.readMs&&!n.classList.contains('flip')){
+       n.classList.add('flip');
+       n.querySelector('.tl').innerHTML='<span class="tm">'+tk.items.length+' item'+(tk.items.length>1?'s':'')+' · tap to call</span>';
+     }
+   });
+ },
+ render:function(){
+   var b=$('stack-body');
+   $('stack-meta').textContent=this.rail.length+' ON RAIL';
+   b.innerHTML='';
+   var plates=0;this.rail.forEach(function(t){t.items.forEach(function(i){plates+=i.qty;});});
+   var weeds=this.rail.length>=this.WEEDS;
+   var tail=WALKOFF?(' · walked '+this.walked):(this.late?(' · '+this.late+' late'):'');
+   var cap=el('<div><div class="railmeta"><span>RAIL '+this.rail.length+' tickets · '+plates+' plates</span>'+
+     '<span>sent '+this.sent+' · wasted '+this.waste+tail+'</span></div>'+
+     '<div class="cap"><i></i></div></div>');
+   var fill=cap.querySelector('.cap i');
+   var p=clamp(this.rail.length/this.WEEDS,0,1);
+   fill.style.width=(p*100)+'%';
+   fill.style.background=p<.5?'var(--go)':(p<.8?'var(--age)':'var(--late)');
+   b.appendChild(cap);
+   if(weeds)b.appendChild(el('<div class="prompt" style="border-color:#5a2e2a;background:#2a1a19;margin-bottom:10px">'+
+     '<b style="color:var(--late)">In the weeds — '+this.rail.length+' on the rail</b>'+
+     '<small>Service keeps running. Dig yourself out.</small></div>'));
+   var wrap=el('<div class="railwrap" id="stack-rail"></div>');
+   var now=Date.now(),self=this;
+   if(!this.rail.length)wrap.appendChild(el('<div class="empty">Rail clear — enjoy it while it lasts</div>'));
+   this.rail.forEach(function(tk){
+     var flipped=(RAILMODE==='flip')&&(now-tk.born>tk.readMs);
+     var lines=tk.items.map(function(it){
+       var m=[];if(it.cook)m.push(it.cook);if(it.bread)m.push(it.bread);
+       m=m.concat(it.adds.map(function(a){return'+'+a;}),it.asks,it.flags);
+       return '<div>'+it.qty+'× '+esc(it.dish)+(m.length?'<br><span class="tm">'+esc(m.join(' · '))+'</span>':'')+'</div>';
+     }).join('');
+     var big=tk.items.length>=5;
+     var n=el('<div class="tk'+(flipped?' flip':'')+(big?' big':'')+'" id="tk'+tk.id+'">'+
+      '<div class="th"><span>TBL <b>'+tk.table+'</b></span>'+
+      (big?'<span class="cnt">'+tk.items.length+' ITEMS</span>':'')+
+      '<span>#'+tk.no+'</span></div>'+
+      '<div class="tl">'+(flipped?'<span class="tm">'+tk.items.length+' item'+(tk.items.length>1?'s':'')+' · tap to call</span>':lines)+'</div>'+
+      '<div class="abar"><i style="width:100%"></i></div></div>');
+     n.onclick=function(){self.call(tk);};
+     wrap.appendChild(n);
+   });
+   b.appendChild(wrap);
+   b.appendChild(el('<div class="prompt"><b>Tap a ticket to call it</b><small>The rail clears while you rebuild it — that is the memory bit</small></div>'));
+   var a=el('<div class="actions"><button class="btn warn" id="sstop">End service</button></div>');
+   b.appendChild(a);
+   $('sstop').onclick=function(){
+     Stack._confirmEnd?self.finish('Service closed'):(Stack._confirmEnd=true,toast('Tap again to close service'),
+       setTimeout(function(){Stack._confirmEnd=false;},2500));};
+   this.updateBars();
+ },
+ call:function(tk){
+   if(!this.running)return;
+   clearInterval(this._tick);            // pause ageing while you call it
+   this.paused=Date.now();
+   var self=this,b=$('stack-body');b.innerHTML='';
+   b.appendChild(el('<div class="prompt"><b>Table '+tk.table+'</b><small>#'+tk.no+' · '+tk.items.length+' item'+(tk.items.length>1?'s':'')+' · from memory now</small></div>'));
+   var host=el('<div></div>');b.appendChild(host);
+   Builder(host,function(ans){
+     var r=grade(tk,ans);
+     var i=self.rail.indexOf(tk);if(i>=0)self.rail.splice(i,1);
+     if(r.pass){self.sent++;tk.items.forEach(function(i){self.plated+=i.qty;});
+       beep(980,120);toast('Away — table '+tk.table);}
+     else{self.waste++;beep(180,300);}
+     var shift=Date.now()-self.paused;                 // don't punish thinking time
+     self.rail.forEach(function(t){t.born+=shift;});
+     self._tick=setInterval(function(){self.tickAges();},250);
+     if(r.pass)self.render(); else self.showMiss(tk,r);
+   },'Send it');
+ },
+ showMiss:function(tk,r){
+   var b=$('stack-body');b.innerHTML='';
+   b.appendChild(el('<div class="verdict bad"><div class="big">Wrong plate</div><small>Table '+tk.table+' · '+r.correct+'/'+r.total+' right</small></div>'));
+   var df=el('<div class="diff"></div>');r.lines.forEach(function(x){df.appendChild(el('<div class="dl '+x.cls+'">'+esc(x.txt)+'</div>'));});
+   b.appendChild(df);
+   var self=this;
+   var a=el('<div class="actions"><button class="btn primary" id="mback">Back to the rail</button></div>');
+   b.appendChild(a);$('mback').onclick=function(){self.render();};
+ },
+
+ finish:function(msg){
+   this.stop();
+   var best=Store.get("v2_deepest",0);
+   if(this.deepest>best)Store.set("v2_deepest",this.deepest);
+   var b=$('stack-body');b.innerHTML='';
+   $('stack-meta').textContent='';
+   var bad=this.waste+this.walked;
+   var v=bad===0?'good':(this.sent>bad?'part':'bad');
+   b.appendChild(el('<div class="verdict '+v+'"><div class="big">'+esc(msg)+'</div>'+
+     '<small>'+this.sent+' tickets away · '+this.plated+' plates</small></div>'));
+   var mins=((Date.now()-this.t0)/60000).toFixed(1);
+   var df=el('<div class="diff"></div>');
+   df.appendChild(el('<div class="dl ok">Tickets sent: '+this.sent+' ('+this.plated+' plates)</div>'));
+   df.appendChild(el('<div class="dl '+(this.waste?'extra':'ok')+'">Wrong on the pass: '+this.waste+'</div>'));
+   if(WALKOFF)df.appendChild(el('<div class="dl '+(this.walked?'miss':'ok')+'">Walked off the rail: '+this.walked+'</div>'));
+   else df.appendChild(el('<div class="dl '+(this.late?'extra':'ok')+'">Ran late: '+this.late+'</div>'));
+   df.appendChild(el('<div class="dl">Deepest rail held: '+this.deepest+' tickets · '+mins+' min worked</div>'));
+   df.appendChild(el('<div class="dl">Still on the rail when you closed: '+this.rail.length+'</div>'));
+   b.appendChild(df);
+   b.appendChild(el('<div class="coach">'+pick(COACH)+'</div>'));
+   var self=this;
+   var a=el('<div class="actions"><button class="btn ghost" id="sdone">Done</button><button class="btn primary" id="sagain">Again</button></div>');
+   b.appendChild(a);
+   $('sagain').onclick=function(){self.start();};$('sdone').onclick=function(){self.quit();};
+ }
+};
+
+/* ================= 04 ALLERGY WATCH ================= */
+var Allergen={
+ start:function(){bumpStreak();this.lives=3;this.score=0;go('s-alrg');this.round();},
+ quit:function(){clearTimeout(this._dl);go('s-home');refreshHome();},
+ round:function(){
+   var n=clamp(2+Math.floor(this.score/3),2,5);
+   var tk=makeTicket({items:n,modProb:0.75});this.tk=tk;
+   var flags=[];tk.items.forEach(function(it,i){if(it.flags.length)flags.push({i:i,v:it.flags.join(', ')});});
+   this.flags=flags;
+   var b=$('alrg-body');b.innerHTML='';
+   $('alrg-meta').innerHTML='<span class="lives">'+new Array(this.lives+1).join('♥')+'</span>';
+   b.appendChild(el('<div class="railmeta"><span>Scan for allergy or diet flags</span><span>score '+this.score+'</span></div>'));
+   b.appendChild(el(chitHTML(tk,{})));
+   var picker=el('<div class="card"><h3>Tap every line carrying a flag</h3><div class="palette"></div></div>');
+   var pal=picker.querySelector('.palette');var chosen={};
+   tk.items.forEach(function(it,i){
+     var c=el('<button class="chip">'+it.qty+'× '+esc(it.dish)+'</button>');
+     c.onclick=function(){chosen[i]=!chosen[i];c.classList.toggle('on');};
+     pal.appendChild(c);});
+   b.appendChild(picker);
+   var self=this;
+   var a=el('<div class="actions"><button class="btn ghost" id="aclr">All clear</button><button class="btn warn" id="achk">Flag &amp; fire</button></div>');
+   b.appendChild(a);
+   $('aclr').onclick=function(){self.check({});};
+   $('achk').onclick=function(){self.check(chosen);};
+   this._dl=setTimeout(function(){toast('Too slow on the pass');self.check(chosen,true);},5000+n*1600);
+ },
+ check:function(chosen,timeout){
+   clearTimeout(this._dl);
+   var need={};this.flags.forEach(function(f){need[f.i]=true;});
+   var ok=!timeout;
+   this.tk.items.forEach(function(_,i){if(!!need[i]!==!!chosen[i])ok=false;});
+   if(ok){this.score++;beep(900,110);toast('✓ Safe');this.round();}
+   else{this.lives--;beep(200,280);this.reveal();}
+ },
+ reveal:function(){
+   var b=$('alrg-body');b.innerHTML='';
+   var dead=this.lives<=0;
+   b.appendChild(el('<div class="verdict bad"><div class="big">'+(dead?'Shift over':'Reaction risk')+'</div>'+
+     '<small>'+(dead?'Final score '+this.score:'The flags were:')+'</small></div>'));
+   var df=el('<div class="diff"></div>');
+   if(this.flags.length)this.flags.forEach(function(f){df.appendChild(el('<div class="dl miss">'+esc(f.v)+' — line '+(f.i+1)+'</div>'));});
+   else df.appendChild(el('<div class="dl ok">No flags at all — it was all clear</div>'));
+   b.appendChild(df);
+   b.appendChild(el('<div class="coach"><b>Real pass:</b> read the flags before the dish. Coeliac asks go to a manager — the board says wg items are not guaranteed safe for them.</div>'));
+   var self=this;
+   if(dead){var best=Store.get("v2_alrgBest",0);if(this.score>best)Store.set("v2_alrgBest",this.score);}
+   var a=el('<div class="actions"><button class="btn ghost" id="ad">Done</button><button class="btn primary" id="an">'+(dead?'Play again':'Next ticket')+'</button></div>');
+   b.appendChild(a);
+   $('ad').onclick=function(){self.quit();};
+   $('an').onclick=function(){dead?self.start():self.round();};
+ }
+};
+
+/* ================= 01 MENU PREP (Leitner) ================= */
+var DELAYS=[0,1,3,7,16];
+var Prep={
+ start:function(){bumpStreak();go('s-prep');this.build();this.next();},
+ quit:function(){go('s-home');refreshHome();},
+ build:function(){
+   this.boxes=Store.get("v2_leitner",{})||{};
+   var now=Date.now(),keys=cardKeys(),self=this;
+   this.q=keys.filter(function(k){var c=self.boxes[k];return !c||c.due<=now;});
+   this.review=!this.q.length;
+   if(this.review)this.q=sample(keys,6);
+   this.q=shuffle(this.q);this.done=0;this.total=this.q.length;
+ },
+ next:function(){
+   if(!this.q.length){this.finish();return;}
+   var key=this.q.shift();this.cur=key;
+   var parts=key.split('::'),kind=parts[0],name=parts[1];
+   var d=dishByName(name);if(!d){this.next();return;}
+   this.d=d;this.kind=kind;
+   var box=(this.boxes[key]&&this.boxes[key].box)||1;
+   $('prep-meta').textContent=(this.done+1)+'/'+this.total+(this.review?' · review':'');
+   var b=$('prep-body');b.innerHTML='';
+   b.appendChild(el('<div class="card"><div class="q-dish">'+esc(d.n)+'</div><div class="q-ask">'+
+     (kind==='comp'?'What comes on it?':'Which diet tags does it carry?')+'</div>'+
+     '<div class="box-tags">'+[1,2,3,4,5].map(function(i){return '<i class="'+(i<=box?'f':'')+'"></i>';}).join('')+'</div></div>'));
+   var opts,truth;
+   if(kind==='comp'){truth=d.comp;opts=shuffle(truth.concat(sample(COMPPOOL.filter(function(c){return truth.indexOf(c)<0;}),6)));}
+   else{truth=d.tags;opts=TAGPOOL;}
+   this.truth=truth;
+   var card=el('<div class="card"><h3>Tap all that apply</h3><div class="palette"></div></div>');
+   var pal=card.querySelector('.palette');var chosen={};
+   opts.forEach(function(o){
+     var c=el('<button class="chip">'+esc(o)+'</button>');
+     c.onclick=function(){chosen[o]=!chosen[o];c.classList.toggle('on');};
+     pal.appendChild(c);});
+   b.appendChild(card);
+   var self=this;
+   var a=el('<div class="actions"><button class="btn primary" id="pchk">Check</button></div>');
+   b.appendChild(a);
+   $('pchk').onclick=function(){self.check(Object.keys(chosen).filter(function(k){return chosen[k];}));};
+ },
+ check:function(got){
+   var truth=this.truth;
+   var ok=truth.slice().sort().join('|')===got.slice().sort().join('|');
+   var key=this.cur,c=this.boxes[key]||{box:1};
+   c.box=ok?clamp(c.box+1,1,5):1;
+   c.due=Date.now()+DELAYS[c.box-1]*86400000;
+   this.boxes[key]=c;Store.set("v2_leitner",this.boxes);this.done++;
+   var b=$('prep-body');b.innerHTML='';
+   b.appendChild(el('<div class="verdict '+(ok?'good':'bad')+'"><div class="big">'+(ok?'Correct':'Not quite')+
+     '</div><small>'+esc(this.d.n)+'</small></div>'));
+   var df=el('<div class="diff"></div>');
+   df.appendChild(el('<div class="dl ok">'+(truth.length?esc(truth.join(', ')):'no tags')+'</div>'));
+   if(!ok){
+     var miss=truth.filter(function(v){return got.indexOf(v)<0;});
+     var ext=got.filter(function(v){return truth.indexOf(v)<0;});
+     if(miss.length)df.appendChild(el('<div class="dl miss">Missed: '+esc(miss.join(', '))+'</div>'));
+     if(ext.length)df.appendChild(el('<div class="dl extra">Not on it: '+esc(ext.join(', '))+'</div>'));
+   }
+   df.appendChild(el('<div class="dl">Back in '+(ok?DELAYS[c.box-1]+' day(s)':'today')+'</div>'));
+   b.appendChild(df);
+   var self=this;
+   var a=el('<div class="actions"><button class="btn ghost" id="pq">Stop</button><button class="btn primary" id="pn">Next</button></div>');
+   b.appendChild(a);
+   $('pq').onclick=function(){self.quit();};$('pn').onclick=function(){self.next();};
+ },
+ finish:function(){
+   var b=$('prep-body');b.innerHTML='';
+   b.appendChild(el('<div class="verdict good"><div class="big">Deck clear</div><small>'+this.done+
+     ' card'+(this.done!==1?'s':'')+' reviewed</small></div>'));
+   b.appendChild(el('<div class="coach"><b>Spacing does the work.</b> Cards you nailed come back in days; ones you fumbled are back today.</div>'));
+   var a=el('<div class="actions"><button class="btn primary" id="pd">Back</button></div>');
+   b.appendChild(a);$('pd').onclick=function(){Prep.quit();};
+ }
+};
+
+refreshHome();
+renderStudy();
+</script>
+<script>
+/* Registers the offline cache when served over https (GitHub Pages).
+   Skipped harmlessly when the file is opened directly from Files. */
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>
